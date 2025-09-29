@@ -2,7 +2,7 @@ from random import randint
 import os
 import csv
 
-HARD_CSV_LIMIT = 5
+HARD_CSV_LIMIT = 20
 LOBBY_FOLDER = "lobbies"
 
 def derangement_shuffle(items):
