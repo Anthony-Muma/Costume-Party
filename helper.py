@@ -3,7 +3,7 @@ import os
 import csv
 
 HARD_CSV_LIMIT = 20
-LOBBY_FOLDER = "lobbies"
+LOBBY_FOLDER = "/lobbies"
 
 def derangement_shuffle(items):
     n = len(items)

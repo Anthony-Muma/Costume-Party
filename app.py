@@ -191,5 +191,5 @@ def send_message():
     return redirect(url_for("admin_view", code=code))
 
 if __name__ == "__main__":
-    os.makedirs(LOBBY_FOLDER, exist_ok=True)
+    #os.makedirs(LOBBY_FOLDER, exist_ok=True)
     app.run()
