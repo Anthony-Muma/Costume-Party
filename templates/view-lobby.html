@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="refresh" content="5">
+</head>
+<body>
+  <div class="back"><a href="{{ url_for('index') }}">Back</a></div>
+  <section>
+    <h2>All Entries</h2>
+    <table border="1" cellpadding="5">
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Note</th>
+      </tr>
+      {% for u in users %}
+      <tr>
+        <td>{{ u[0] }}</td>
+        <td>{{ u[1] }}</td>
+        <td>{{ u[2] }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </section>
+</body>
+
+</html>

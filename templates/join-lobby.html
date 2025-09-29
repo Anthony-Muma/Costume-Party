@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+</head>
+<body>
+    <div class="back"><a href="{{ url_for('index') }}">Back</a></div>
+    <h2>Create New Entry For {{code}}</h2>
+    <form method="POST">
+        <input type="text" name="name" placeholder="Your Name" required><br>
+        <input type="tel" name="phone" placeholder="Your Phone Number" pattern="^\+?[0-9\s\-\(\)]{7,}$" required><br>
+        <textarea name="note" placeholder="Your Note"></textarea><br>
+        <input type="submit"/>
+    </form>
+</body>
+
+</html>

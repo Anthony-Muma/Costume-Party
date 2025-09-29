@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="refresh" content="5">
+</head>
+
+<body>
+    <div class="back"><a href="{{ url_for('admin_manager') }}">Back</a></div>
+    <div class="logout"><a href="{{ url_for('logout') }}">Logout</a></div>
+    <section>
+        <h2>All Entries</h2>
+        <table border="1" cellpadding="5">
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Note</th>
+                <th>Pair</th>
+                <th>Remove?</th>
+            </tr>
+            {% for u in users %}
+            <tr>
+                <td>{{ u[0] }}</td>
+                <td>{{ u[1] }}</td>
+                <td>{{ u[2] }}</td>
+                <td>{{ u[3] }}</td>
+                <td>
+                    <form method="post">
+                        <input type="hidden" name="row_index" value="{{ loop.index0 }}">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </section>
+    <section>
+        <form method="POST" action="/generate-pairing">
+            <input type="hidden" name="lobby-code" value="{{ code }}">
+            <button type="submit">Generate Pairs</button>
+        </form>
+        <form method="POST" action="/send-message">
+            <input type="hidden" name="lobby-code" value="{{ code }}">
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+</body>
+
+</html>

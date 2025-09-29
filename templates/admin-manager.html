@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div class="back"><a href="{{ url_for('index') }}">Back</a></div>
+    <div class="logout"><a href="{{ url_for('logout') }}">Logout</a></div>
+    <table border="1" cellpadding="5">
+        <tr>
+            <th>Name</th>
+            <th>Start</th>
+        </tr>
+        {% for lobby in lobbies %}
+        <tr>
+            <td>{{ lobby }}</td>
+            <td>
+                <form method="post">
+                    <input type="hidden" name="row_index" value="{{ loop.index0 }}">
+                    <button type="submit">View</button>
+                </form>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    </form>
+</body>
+
+</html>
