@@ -10,7 +10,7 @@
     <table border="1" cellpadding="5">
         <tr>
             <th>Name</th>
-            <th>Start</th>
+            <th>View</th>
         </tr>
         {% for lobby in lobbies %}
         <tr>
@@ -24,6 +24,9 @@
         </tr>
         {% endfor %}
     </table>
+    <form method="POST" action="/create-lobby">
+        <input type="text" name="code" placeholder="Enter code" required>
+        <button class="submit" type="submit">Create</button>
     </form>
 </body>
 

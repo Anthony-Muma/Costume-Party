@@ -4,10 +4,14 @@
 </head>
 
 <body>
-    <h1>Welcome to Muma's simple Website</h1>
-    <div><a href="{{ url_for('lobby', mode='join') }}">Join Lobby</a></div>
-    <div><a href="{{ url_for('lobby', mode='view') }}">View Lobby</a></div>
-    <div><a href="{{ url_for('admin_login') }}">Admin Login</a></div> 
+    <header>
+        <h1>Muma's Exchange</h1>
+    </header>
+    <main>
+        <div class="button"><a href="{{ url_for('lobby', mode='join') }}">Join Lobby</a></div>
+        <div class="button"><a href="{{ url_for('lobby', mode='view') }}">View Lobby</a></div>
+        <div class="button"><a href="{{ url_for('admin_login') }}">Admin Login</a></div> 
+    </main>
 </body>
 
 </html>

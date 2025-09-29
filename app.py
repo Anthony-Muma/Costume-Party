@@ -119,8 +119,24 @@ def logout():
     session.clear()
     return redirect(url_for("admin_login"))
 
+@app.route("/create-lobby", methods=["POST"])
+def create_lobby():
+    if not session.get("admin"):
+        return redirect(url_for("admin_login"))
+    
+    code = request.form.get("code")
+    path = lobby_file_path(code)
+
+    rewrite_csv(path,[])
+    print("hello!")
+
+    return redirect(url_for("admin_manager"))
+
 @app.route("/generate-pairing", methods=["POST"])
 def generate_pairing():
+    if not session.get("admin"):
+        return redirect(url_for("admin_login"))
+    
     code = request.form.get("lobby-code")
     path = lobby_file_path(code)
 
@@ -148,6 +164,9 @@ def generate_pairing():
 
 @app.route("/send-message", methods=["POST"])
 def send_message():
+    if not session.get("admin"):
+        return redirect(url_for("admin_login"))
+    
     code = request.form.get("lobby-code")
     path = lobby_file_path(code)
 
@@ -173,4 +192,4 @@ def send_message():
 
 if __name__ == "__main__":
     os.makedirs(LOBBY_FOLDER, exist_ok=True)
-    app.run()
+    app.run(debug=True)
