@@ -23,8 +23,11 @@ def format_phone(raw_number, region="CA"):
     return None
 
 def send_message(number, message):
-    client.messages.create(
-            messaging_service_sid=MESSAGING_SERVICE_SID,
-            body=message,
-            to=number
-        )
+    try:
+        client.messages.create(
+                messaging_service_sid=MESSAGING_SERVICE_SID,
+                body=message,
+                to=number
+            )
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")

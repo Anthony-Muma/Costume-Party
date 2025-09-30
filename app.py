@@ -1,5 +1,6 @@
 
 from flask import Flask, render_template, request, redirect, url_for, session
+from twilio.twiml.messaging_response import MessagingResponse
 import messenger
 from helper import *
 
@@ -132,6 +133,32 @@ def create_lobby():
 
     return redirect(url_for("admin_manager"))
 
+@app.route("/test-message", methods=["POST"])
+def test_message():
+    if not session.get("admin"):
+        return redirect(url_for("admin_login"))
+    
+    code = request.form.get("lobby-code")
+    path = lobby_file_path(code)
+
+    # Populate
+    entries = read_from_csv(path)
+
+    # Error handle 
+    if len(entries) == 0:
+        return redirect(url_for("admin_view", code=code))
+    for value in entries:
+        if not messenger.format_phone(value[1]):
+            return redirect(url_for("admin_view", code=code))
+    
+    # Send message
+    for _,value in enumerate(entries):
+        message = f"THIS IS A TEST MESSAGE FOR THE HALLOWEEN GIFT EXCHANGE."
+        phone_number = value[1]
+        messenger.send_message(phone_number, message)
+    
+    return redirect(url_for("admin_view", code=code))
+
 @app.route("/generate-pairing", methods=["POST"])
 def generate_pairing():
     if not session.get("admin"):
@@ -189,6 +216,24 @@ def send_message():
         messenger.send_message(phone_number, message)
     
     return redirect(url_for("admin_view", code=code))
+
+@app.route("/sms", methods=["POST","GET"])
+def reply_message():
+    # Get the message the user sent our Twilio number
+    body = request.values.get('Body', None)
+    from_number = request.values.get('From', None)
+
+    # Start our TwiML response
+    resp = MessagingResponse()
+
+    # Determine the right reply for this message
+    # if body.lower() == 'remove':
+    #     resp.message("You've been removed from the list")
+    # if body.lower() == 'add':
+    # else:
+
+
+    return str(resp)
 
 if __name__ == "__main__":
     #os.makedirs(LOBBY_FOLDER, exist_ok=True)

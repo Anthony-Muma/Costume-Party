@@ -35,6 +35,10 @@
         </table>
     </section>
     <section>
+        <form method="POST" action="/test-message">
+            <input type="hidden" name="lobby-code" value="{{ code }}">
+            <button type="submit">Test Message</button>
+        </form>
         <form method="POST" action="/generate-pairing">
             <input type="hidden" name="lobby-code" value="{{ code }}">
             <button type="submit">Generate Pairs</button>

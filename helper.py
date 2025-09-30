@@ -47,6 +47,12 @@ def rows_in_csv(path):
         pass
     return row_count
 
+def delete_csv(path):
+    try:
+        os.remove(path)
+    except:
+        pass
+
 def lobby_file_path(code, folder=LOBBY_FOLDER):
     return os.path.join(folder, f"{code}.csv")
 
