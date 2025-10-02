@@ -211,7 +211,7 @@ def send_message():
     for _,value in enumerate(entries):
         target_name = value[0]
         target_note = value[2]
-        message = f"Event Code: '{code}'\nYour Person: '{target_name}'\nTheir Note: '{target_note}'"
+        message = f"Event Code: '{code}'\nYour Person: '{target_name}'\nTheir Note: '{target_note}'\n\nPlease don't get a costume that's too small. As well, be sure to buy the costume before the party."
         phone_number = value[3] # Gifter's phone number
         messenger.send_message(phone_number, message)
     
